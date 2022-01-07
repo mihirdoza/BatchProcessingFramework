@@ -1,0 +1,12 @@
+E:\MO\NetZoom\NZ2020\BatchProcessing\BatchProcessingFramework\obj\Debug\BatchProcessingFramework.csprojAssemblyReference.cache
+E:\MO\NetZoom\NZ2020\BatchProcessing\BatchProcessingFramework\obj\Debug\BatchProcessingFramework.csproj.CoreCompileInputs.cache
+E:\MO\NetZoom\NZ2020\BatchProcessing\BatchProcessingFramework\bin\Debug\BatchProcessingFramework.dll.config
+E:\MO\NetZoom\NZ2020\BatchProcessing\BatchProcessingFramework\bin\Debug\BatchProcessingFramework.dll
+E:\MO\NetZoom\NZ2020\BatchProcessing\BatchProcessingFramework\bin\Debug\BatchProcessingFramework.pdb
+E:\MO\NetZoom\NZ2020\BatchProcessing\BatchProcessingFramework\bin\Debug\EntityFramework.dll
+E:\MO\NetZoom\NZ2020\BatchProcessing\BatchProcessingFramework\bin\Debug\EntityFramework.SqlServer.dll
+E:\MO\NetZoom\NZ2020\BatchProcessing\BatchProcessingFramework\bin\Debug\EntityFramework.xml
+E:\MO\NetZoom\NZ2020\BatchProcessing\BatchProcessingFramework\bin\Debug\EntityFramework.SqlServer.xml
+E:\MO\NetZoom\NZ2020\BatchProcessing\BatchProcessingFramework\obj\Debug\BatchProcessingFramework.csproj.CopyComplete
+E:\MO\NetZoom\NZ2020\BatchProcessing\BatchProcessingFramework\obj\Debug\BatchProcessingFramework.dll
+E:\MO\NetZoom\NZ2020\BatchProcessing\BatchProcessingFramework\obj\Debug\BatchProcessingFramework.pdb
