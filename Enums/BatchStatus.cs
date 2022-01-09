@@ -15,4 +15,14 @@ namespace BatchProcessingFramework.Enums
         public const string Paused = "Paused";
         public const string Killed = "Killed";
     }
+    public static class BatchDataSetStatus
+    {
+        public const string Error = "Error";
+        public const string Open = "Open";
+        public const string Processing = "Processing";
+        public const string Finished = "Finished";
+        public const string Closed = "Closed";
+        public const string Paused = "Paused";
+        public const string Killed = "Killed";
+    }
 }

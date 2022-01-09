@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BatchProcessingFramework.Requests
 {
-    public class TicketProfileRequest : BaseRequest, IProfileRequest<TicketProfileRequest>
+    //public class TicketProfileRequest : BaseRequest, IProfileRequest<TicketProfileRequest>
+    public class TicketProfileRequest : BaseRequest
     {
         public TicketProfileRequest(string data)
         {

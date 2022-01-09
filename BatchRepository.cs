@@ -148,7 +148,7 @@ namespace BatchProcessingFramework
             return returnValue;
         }
 
-        public bool CloseBatchInstance(long batchInstanceID)
+        public bool CloseBatchInstance(long batchInstanceID, int datasetCount)
         {
             var returnValue = false;
             try
@@ -159,7 +159,7 @@ namespace BatchProcessingFramework
                     if (batchInstance != null)
                     {
                         batchInstance.SortOrder = batchInstance.BatchInstanceID;
-                        //batchInstance.DataSetsCount = batchInstanceModel.DataSetsCount;
+                        batchInstance.DataSetsCount = datasetCount;
                         batchInstance.Status = BatchStatus.Closed;
                         batchInstance.LastUpdated = System.DateTime.Now;
                         dbContext.SaveChanges();
@@ -197,17 +197,123 @@ namespace BatchProcessingFramework
             return returnValue;
         }
 
-        public List<BatchInstance> GetAllOpenBatch()
+        public BatchInstance GetBatchInstance(long batchInstanceID)
+        {
+            BatchInstance returnValue = null;
+            try
+            {
+                using (var dbContext = new DatabaseContext())
+                {
+                    var batchInstance = dbContext.BatchInstance.FirstOrDefault(s => s.BatchInstanceID == batchInstanceID);
+                    if (batchInstance != null)
+                    {
+                        returnValue = batchInstance;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return returnValue;
+        }
+
+        public List<BatchInstanceDataSet> GetBatchInstanceDataSet(long batchInstanceID)
+        {
+            List<BatchInstanceDataSet> returnValue = new List<BatchInstanceDataSet>();
+            try
+            {
+                using (var dbContext = new DatabaseContext())
+                {
+                    var batchInstance = dbContext.BatchInstanceDataSet.Where(s => s.BatchInstanceID == batchInstanceID).ToList();
+                    if (batchInstance != null && batchInstance.Count() > 0)
+                    {
+                        returnValue = batchInstance;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return returnValue;
+        }
+
+        public bool HasBatchIsProcessing()
         {
             var returnValue = false;
             try
             {
                 using (var dbContext = new DatabaseContext())
                 {
-                    var batchInstance = dbContext.BatchInstance.Where(s => s.Status == batchInstanceID);
+                    var batchInstance = dbContext.BatchInstance.OrderBy(s => s.BatchInstanceID).Where(s => s.Status == BatchStatus.Processing).ToList();
+                    if (batchInstance != null && batchInstance.Count() > 0)
+                    {
+                        returnValue = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return returnValue;
+        }
+
+        public BatchInstance GetTopClosedBatch()
+        {
+            BatchInstance returnValue = null;
+            try
+            {
+                using (var dbContext = new DatabaseContext())
+                {
+                    var batchInstance = dbContext.BatchInstance.OrderBy(s =>s.SortOrder).FirstOrDefault(s => s.SortOrder > -1 && s.Status == BatchStatus.Closed);
                     if (batchInstance != null)
                     {
-                        dbContext.BatchInstance.Remove(batchInstance);
+                        returnValue = batchInstance;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return returnValue;
+        }
+
+
+        public bool ResetBatchTables()
+        {
+            var returnValue = false;
+            try
+            {
+                using (var dbContext = new DatabaseContext())
+                {
+                    var batchInstances = dbContext.Database.SqlQuery<BatchInstance>("exec ResetBatchTables").ToList();
+                    if (batchInstances != null && batchInstances.Count() == 0)
+                    {
+                        returnValue = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return returnValue;
+        }
+
+        public bool UpdateBatchInstanceSortOrder(long batchInstanceID)
+        {
+            var returnValue = false;
+            try
+            {
+                using (var dbContext = new DatabaseContext())
+                {
+                    var batchInstance = dbContext.BatchInstance.FirstOrDefault(s => s.BatchInstanceID == batchInstanceID);
+                    if (batchInstance != null)
+                    {
+                        batchInstance.SortOrder = batchInstance.BatchInstanceID;
                         dbContext.SaveChanges();
                         returnValue = true;
                     }
@@ -217,6 +323,7 @@ namespace BatchProcessingFramework
             {
                 throw ex;
             }
+
             return returnValue;
         }
     }

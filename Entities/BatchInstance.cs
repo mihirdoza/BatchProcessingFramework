@@ -19,6 +19,8 @@ namespace BatchProcessingFramework.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public string Progress { get; set; }
+        public DateTime ProgressStartDate { get; set; }
+        public DateTime ProgressEndDate { get; set; }
         public string Status { get; set; }
         public bool IsTaskLogRequired { get; set; }
         public int DataSetsCount { get; set; }
