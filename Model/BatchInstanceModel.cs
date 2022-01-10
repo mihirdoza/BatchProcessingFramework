@@ -33,7 +33,6 @@ namespace BatchProcessingFramework.Model
             returnValue.Description = BatchInstance.Description;
             returnValue.Status = BatchInstance.Status;
             returnValue.LastUpdated = BatchInstance.LastUpdated;
-            returnValue.Progress = BatchInstance.Progress;
             returnValue.DataSetsCount = BatchInstance.DataSetsCount;
             returnValue.SortOrder = BatchInstance.SortOrder;
             returnValue.DataSetCloseCount= BatchInstance.DataSetCloseCount;

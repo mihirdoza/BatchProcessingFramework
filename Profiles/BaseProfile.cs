@@ -45,17 +45,17 @@ namespace BatchProcessingFramework.Profiles
                             else if (request.profileName == "odd")
                             {
                                 var oddNumber = new OddNumber();
-                                oddNumber.NZ_PreBatchNodeFor(request.profileName, row);
+                                nodeId = oddNumber.NZ_PreBatchNodeFor(request.profileName, row);
                             }
                             else if (request.profileName == "even")
                             {
                                 var evenNumber = new EvenNumber();
-                                evenNumber.NZ_PreBatchNodeFor(request.profileName, row);
+                                nodeId = evenNumber.NZ_PreBatchNodeFor(request.profileName, row);
                             }
                             else if (request.profileName == "capalpha")
                             {
                                 var capitalAlpha = new CapitalAlpha();
-                                capitalAlpha.NZ_PreBatchNodeFor(request.profileName, row);
+                                nodeId = capitalAlpha.NZ_PreBatchNodeFor(request.profileName, row);
                             }
 
                             //==============Add DataSet for Batch====================

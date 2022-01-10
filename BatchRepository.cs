@@ -32,6 +32,7 @@ namespace BatchProcessingFramework
                     else
                     {
                         batchInstance = new BatchInstance();
+                        batchInstance.AppApID = appAP.ID;
                         batchInstance.Name = batchprofilename;
                         batchInstance.Status = BatchStatus.Open;
                         batchInstance.SortOrder = -1;
@@ -40,6 +41,8 @@ namespace BatchProcessingFramework
                         batchInstance.DataSetErrorCount = 0;
                         batchInstance.IsTaskLogRequired = (appAP != null ? appAP.IsRequired : false);
                         batchInstance.LastUpdated = System.DateTime.Now;
+                        batchInstance.ProgressStartDate = null;
+                        batchInstance.ProgressEndDate = null;
                         dbContext.BatchInstance.Add(batchInstance);
                         dbContext.SaveChanges();
                         returnvalue = batchInstance.BatchInstanceID;
@@ -101,7 +104,7 @@ namespace BatchProcessingFramework
                             batchInstanceDataSet.LastUpdated = System.DateTime.Now;
                             dbContext.BatchInstanceDataSet.Add(batchInstanceDataSet);
                             dbContext.SaveChanges();
-                            returnvalue = batchInstanceDataSet.BatchInstanceDataSetID;
+                            returnvalue = batchInstanceID.Value;
                         }
                     }
                 }
